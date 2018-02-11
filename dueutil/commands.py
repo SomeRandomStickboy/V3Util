@@ -10,7 +10,7 @@ from .permissions import Permission
 from . import commandextras
 
 extras = commandextras
-IMAGE_REQUEST_COOLDOWN = 5
+IMAGE_REQUEST_COOLDOWN = 1
 
 """
 DueUtils random command system.
@@ -62,7 +62,7 @@ def command(**command_rules):
                                                  + " You can only use the following commands: ``"
                                                  + ', '.join(command_whitelist) + "``."))
                 else:
-                    await util.say(ctx.channel, ":anger: That command is blacklisted in this channel!")
+                    await util.say(ctx.channel, "That command is blacklisted in this channel!")
                 return True
             # Do they have the perms for the command
             if check(ctx.author, wrapped_command):
@@ -129,7 +129,7 @@ def replace_aliases(command_list):
 
 def imagecommand():
     def wrap(command_func):
-        @ratelimit(slow_command=True, cooldown=IMAGE_REQUEST_COOLDOWN, error=":cold_sweat: Please don't spam commands!")
+        @ratelimit(slow_command=True, cooldown=IMAGE_REQUEST_COOLDOWN, error=":x: Please don't spam commands.")
         @wraps(command_func)
         async def wrapped_command(ctx, *args, **kwargs):
             await util.get_client(ctx).send_typing(ctx.channel)
