@@ -8,7 +8,7 @@ from cachetools.func import ttl_cache
 
 leaderboards = dict()
 last_leaderboard_update = 0
-UPDATE_INTERVAL = 3600
+UPDATE_INTERVAL = 2628002
 
 _LocalLeaderboard = namedtuple("LocalLeaderboard", ["updated", "data"])
 
